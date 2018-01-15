@@ -1,33 +1,40 @@
-﻿require('rootpath')();
-var express = require('express');
-var app = express();
-var cors = require('cors');
+﻿var express = require('express');
+var path = require('path');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressJwt = require('express-jwt');
-var config = require('config.json');
-
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+ 
+var index = require('./routes/index');
+var todos = require('./routes/todos');
+ 
+var app = express();
+ 
+// view engine setup
+console.log(__dirname);
+app.set('views', path.resolve('../client/src'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.use(logger('dev'));
 app.use(bodyParser.json());
-
-// use JWT auth to secure the api, the token can be passed in the authorization header or querystring
-app.use(expressJwt({
-    secret: config.secret,
-    getToken: function (req) {
-        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-            return req.headers.authorization.split(' ')[1];
-        } else if (req.query && req.query.token) {
-            return req.query.token;
-        }
-        return null;
-    }
-}).unless({ path: ['/users/authenticate', '/users/register'] }));
-
-// routes
-app.use('/users', require('./controllers/users.controller'));
-
-// start server
-var port = process.env.NODE_ENV === 'production' ? 80 : 4000;
-var server = app.listen(port, function () {
-    console.log('Server listening on port ' + port);
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+ 
+app.use('/api/', todos);
+ 
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
+ 
+var server = app.listen(3000, function() {
+    var host = 'localhost';
+    var port = server.address().port;
+    console.log('App listening at http://%s:%s', host, port);
+});
+ 
+module.exports = app;
