@@ -3,14 +3,13 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
- 
-var index = require('./routes/index');
+var cors = require('cors');
+
 var todos = require('./routes/todos');
  
 var app = express();
  
 // view engine setup
-console.log(__dirname);
 app.set('views', path.resolve('../client/src'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -20,9 +19,11 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
+app.use(cors());
+
 app.use(express.static(path.join(__dirname, 'public')));
- 
-app.use('/api/', todos);
+
+app.use('/api', todos);
  
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

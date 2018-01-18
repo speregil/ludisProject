@@ -1,10 +1,21 @@
 import { Component } from '@angular/core';
+import { TodoService } from './services/todo.service';
 
 @Component({
   selector: 'todos',
-  templateUrl: './views/todos.component.html',
-  styleUrls: ['./views/todos.component.css']
+  templateUrl: './views/todos.component.html'
 })
+
 export class TodoComponent {
-  title = 'Todo';
+  constructor(private todoService: TodoService) {}
+  todos = {};
+  mesagge = {};
+
+  loadTodos() {
+    this.todoService.getTodos().subscribe(data => this.todos = data);
+  }
+
+  test() {
+    this.todoService.test().subscribe(data => this.mesagge = data);
+  }
 }
