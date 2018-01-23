@@ -4,8 +4,11 @@ var controller = {};
 
 controller.test = test;
 
+
 module.exports = controller;
 
-function test(){
-    return servicio.test();
+controller.ruinas = function (callback){
+    servicio.ruinas(function(err, ruinas){
+        callback(err, ruinas);
+    });   
 }

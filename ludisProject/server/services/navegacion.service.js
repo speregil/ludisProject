@@ -5,8 +5,6 @@ var Ruina = require('./models/Ruina');
 var service = {};
 service.test = test;
 
-module.exports = service;
-
 function connect(){
     mongoose.connect('mongodb://localhost/ludisDB');
     var db = mongoose.connection;
@@ -19,14 +17,12 @@ function connect(){
     return db;
 }
 
-function test(){
+service.ruinas = function (callback){
     var db = connect();
-    var testData = new Ruina({nombre: 'La Biblioteca de Birma', 
-                                alt: 'Fundamentos de Matemáticas' });
-    testData.save(function (err, data){
-        if(err) return console.error(err);
-        mongoose.disconnect();
+    Ruina.find(function (err, ruinas){
+        callback(err, ruinas);
     });
-    return {resp: 'insercion exitosa'};
 }
+
+module.exports = service;
 

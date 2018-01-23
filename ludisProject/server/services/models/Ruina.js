@@ -1,18 +1,19 @@
 var mongoose = require('mongoose');
 
-var schema = mongoose.Schema({
+var Schema = mongoose.Schema;
+
+var ruina = Schema({
+    _id : Schema.ObjectId,
     nombre : String,
     alt : String
-  });
+});
 
-schema.methods.setNombre = function(nombre){
+ruina.methods.setNombre = function(nombre){
     this.nombre = nombre;
 }
 
-schema.methods.setAlt = function(alt){
+ruina.methods.setAlt = function(alt){
     this.alt = alt;
 }
 
-var ruina = mongoose.model('Ruina', schema);
-
-module.exports = ruina;
+module.exports = mongoose.model('Ruina', ruina);
