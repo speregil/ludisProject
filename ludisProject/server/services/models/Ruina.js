@@ -1,3 +1,5 @@
+// Define el schema en Mongoose de una Ruina
+// La ruina representa un curso o organización general de temas comunes
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
