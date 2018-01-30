@@ -3,21 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { TodoComponent } from './components/todo.component';
-import { TodoService } from 'app/components/services/todo.service';
+import { NavegacionComponent } from './components/navegacion.component';
+import { NavegacionService } from 'app/components/services/navegacion.service';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    NavegacionComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [TodoService],
+  providers: [
+    NavegacionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
