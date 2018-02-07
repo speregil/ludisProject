@@ -11,7 +11,7 @@ import { NavegacionService } from './services/navegacion.service';
 export class NavegacionComponent implements OnInit  {
   constructor(private navegacionService: NavegacionService) {}
   ruinas = [];
-  areas = [];
+  cuerpoAreas = new Array();
 
   ngOnInit() {
     this.getRuinas();
@@ -22,6 +22,22 @@ export class NavegacionComponent implements OnInit  {
   }
 
   getAreas(idRuina){
-    this.navegacionService.getAreas(idRuina).subscribe(data => this.areas = data);
+    this.navegacionService.getAreas(idRuina).subscribe(data => { 
+      var areas = [];
+      var areasRaiz = new Array();
+      areas = data;
+      // Encuentra las areas raiz
+      for(var i = 0; i < areas.length;  i++){
+        var previos = areas[i].areaPrev; 
+        if(previos.length == 0)
+          areasRaiz.push(areas[i]);  
+      }
+
+      
+    });
+  }
+
+  private organizarAreas(raiz : Array<{}>){
+    
   }
 }

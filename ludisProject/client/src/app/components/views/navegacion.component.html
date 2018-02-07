@@ -20,7 +20,15 @@
   	
         <!-- main area -->
         <div class="col-xs-12 col-sm-9">
-          <button *ngFor="let area of areas">{{area.nombre}}</button> 
+          <table>
+            <tr>
+              <td *ngFor="let area of areasRaiz"><button>{{area.nombre}}</button></td>
+            </tr>
+            <tr *ngFor>
+
+            </tr>
+          </table>
+           
         </div><!-- /.col-xs-12 main -->
     </div><!--/.row-->
   </div><!--/.container-->
