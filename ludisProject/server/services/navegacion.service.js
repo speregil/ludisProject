@@ -45,6 +45,18 @@ service.areas = function (idRuina, callback){
     });
 }
 
+// Servicio para obtener un área específica
+// idArea - identificador único del área a consultar
+// callback - funcion a llamar cuando se ejecute la operación
+// retorna un json con el esquema definido en Area.js
+service.area = function (idArea, callback){
+    var db = connect();
+    Area.find({_id : idArea}, function(err, area){
+        callback(err, area);
+        mongoose.disconnect();
+    });
+}
+
 // Servicio para obtener el recorrido de un área específica
 // idArea - identificador único del área a consultar
 // callback - funcion a llamar cuando se ejecute la operación

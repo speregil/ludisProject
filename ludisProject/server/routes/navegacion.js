@@ -27,6 +27,17 @@ router.get('/areas/:idRuina', function(req, res, next) {
     });
 });
 
+router.get('/area/:idArea', function(req, res, next) {
+    controller.area(req.params.idArea, function(err, area){
+        if(err){
+           res.status(500);
+           res.send('Error de consulta: ' + err); 
+        }
+
+        res.send(area);
+    });
+});
+
 router.get('/recorrido/:idArea', function(req, res, next) {
     controller.recorrido(req.params.idArea, function(err, recorrido){
         if(err){

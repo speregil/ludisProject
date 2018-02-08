@@ -15,4 +15,9 @@ export class NavegacionService {
     const url = 'http://localhost:3000/api/navegacion/areas/' + idRuina;
     return this.http.get<{}[]>(url);
   }
+
+  getArea(idArea) {
+    const url = 'http://localhost:3000/api/navegacion/area/' + idArea;
+    return this.http.get<{}>(url);
+  }
 }

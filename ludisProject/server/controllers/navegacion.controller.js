@@ -23,6 +23,15 @@ controller.areas = function (idRuina, callback){
     });   
 }
 
+// Servicio para obtener un área específica
+// idArea - identificador único del área a consultar
+// callback - funcion a llamar cuando se ejecute la operación
+controller.area = function (idArea, callback){
+    servicio.area(idArea, function(err, area){
+        callback(err, area);
+    });   
+}
+
 // Servicio para obtener el recorrido de un área específica
 // idArea - identificador único del área a consultar
 // callback - funcion a llamar cuando se ejecute la operación
