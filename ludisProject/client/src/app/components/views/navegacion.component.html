@@ -21,11 +21,8 @@
         <!-- main area -->
         <div class="col-xs-12 col-sm-9">
           <table>
-            <tr>
-              <td *ngFor="let area of areasRaiz"><button>{{area.nombre}}</button></td>
-            </tr>
-            <tr *ngFor>
-
+            <tr *ngFor="let areas of cuerpoAreas">
+              <td *ngFor="let area of areas"><button>{{area.nombre}}</button></td>
             </tr>
           </table>
            

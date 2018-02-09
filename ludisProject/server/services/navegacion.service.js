@@ -52,7 +52,7 @@ service.areas = function (idRuina, callback){
 service.area = function (idArea, callback){
     var db = connect();
     Area.find({_id : idArea}, function(err, area){
-        callback(err, area);
+        callback(err, area[0]);
         mongoose.disconnect();
     });
 }
