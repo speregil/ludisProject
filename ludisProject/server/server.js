@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var navegacion = require('./routes/navegacion');
+var contenido = require('./routes/contenido');
  
 var app = express();
  
@@ -24,6 +25,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/navegacion', navegacion);
+app.use('/api/contenido', contenido);
  
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
