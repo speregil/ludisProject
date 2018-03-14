@@ -30,4 +30,12 @@ area.methods.setRuina = function(ruina){
     this.ruina = ruina;
 }
 
+area.methods.asignarSiguiente = function(idSiguiente){
+    areaSig.push(idSiguiente);
+}
+
+area.methods.asignarPrevia = function(idPrevia){
+    areaPrev.push(idPrevia);
+}
+
 module.exports = mongoose.model('Area', area);

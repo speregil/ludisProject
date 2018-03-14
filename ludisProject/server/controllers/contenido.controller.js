@@ -8,4 +8,16 @@ controller.crearRuina = function(req, callback){
     });
 }
 
+controller.crearArea = function(req, callback){
+    servicio.crearArea(req.body.nombre, req.body.desc, req.body.alt, req.body.idRuina, function(err, area){
+        callback(err, area);
+    });
+}
+
+controller.asignarSiguiente = function(req, callback){
+    servicio.asignarSiguiente(req.body.idActual, req.body.idSiguiente, function(err, areaSiguiente, areaActual){
+        callback(err, areaSiguiente, areaActual);
+    })
+}
+
 module.exports = controller;
