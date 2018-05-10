@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContenidoService } from './services/contenido.service';
 
 @Component({
     selector: 'contenido',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   })
 
   export class ContenidoComponent implements OnInit  {
+    constructor(private contenidoService: ContenidoService) {}
 
     ngOnInit() {}
 
