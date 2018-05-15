@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContenidoService } from './services/contenido.service';
+import { NavegacionService } from './services/navegacion.service';
 
 @Component({
     selector: 'contenido-ruina',
@@ -8,16 +9,23 @@ import { ContenidoService } from './services/contenido.service';
   })
 
   export class RuinaComponent implements OnInit  {
-    constructor(private contenidoService: ContenidoService) {}
+    constructor(private contenidoService: ContenidoService, private navegacionService: NavegacionService) {}
 
     mensaje : String = "";
-    ruina = {nombre : "", alt : ""};
+    ruinas = [];
+    seleccion = {};
 
-    ngOnInit() {}
+    ngOnInit() {
+      this.getRuinas();
+    }
+  
+    getRuinas(){
+      this.navegacionService.getRuinas().subscribe(data => this.ruinas = data);
+    }
 
     crearRuina(){
-      var nomRuina = this.ruina.nombre;
-      var altRuina = this.ruina.alt;
+      var nomRuina = this.seleccion["nombre"];
+      var altRuina = this.seleccion["alt"];
 
       if(nomRuina != "" && altRuina != ""){
         this.contenidoService.crearRuina(nomRuina, altRuina).subscribe(data  => { 
@@ -35,7 +43,6 @@ import { ContenidoService } from './services/contenido.service';
     }
 
     limpiarFormulario(){
-      this.ruina.nombre = "";
-      this.ruina.alt = "";
+
     }
   }
