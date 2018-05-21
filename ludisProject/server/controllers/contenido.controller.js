@@ -8,6 +8,12 @@ controller.crearRuina = function(req, callback){
     });
 }
 
+controller.editarRuina = function(req, callback){
+    servicio.editarRuina(req.body.id, req.body.nombre, req.body.alt, function(err, num){
+        callback(err, num);
+    });
+}
+
 controller.crearArea = function(req, callback){
     servicio.crearArea(req.body.nombre, req.body.desc, req.body.alt, req.body.idRuina, function(err, area){
         callback(err, area);

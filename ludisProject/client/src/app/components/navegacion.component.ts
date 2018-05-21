@@ -9,21 +9,33 @@ import { Area } from './models/area.model';
               './views/assets/navegacion.component.css']
 })
 
+/*
+Controla las funcionalidades de navegación y visualización de contenidos en el sistema
+*/
 export class NavegacionComponent implements OnInit  {
+  
   constructor(private navegacionService: NavegacionService) {}
-  ruinas = [];
-  cuerpoAreas = new Array();
+  
+  ruinas = [];                              // Conjunto de ruinas registradas en el sistema
+  cuerpoAreas = new Array();                // Areas organizadas para visualizacion que conforman la ruina actual seleccionada
 
-  private areasActual = new Array<Area>();
+  private areasActual = new Array<Area>();  // Conjunto de areas de la ruina actual
 
   ngOnInit() {
     this.getRuinas();
   }
 
+  /*
+  Pide un arreglo con todas las ruinas registradas y las guarda en ruinas
+  */
   getRuinas(){
     this.navegacionService.getRuinas().subscribe(data => this.ruinas = data);
   }
 
+  /*
+  Pide un arreglo con todas las areas de la ruina que recibe por parametro y las organiza para su visualización
+  idRuina = Ruina seleccionada
+  */
   getAreas(idRuina){
     this.limpiarSeleccion();
     this.navegacionService.getAreas(idRuina).subscribe(data => { 
@@ -50,6 +62,10 @@ export class NavegacionComponent implements OnInit  {
     });
   }
 
+  /*
+    Busca todas las areas iniciales del conjunto actual de areas consultadas
+    Las areas deben estar en la variable areasActuales
+  */
   private encontrarRaices(){
     var raices = new Array<Area>();
     for(var i = 0; i < this.areasActual.length; i++ ){
@@ -60,6 +76,10 @@ export class NavegacionComponent implements OnInit  {
     return raices;
   }
 
+  /*
+  Función recursiva que organiza las areas de tal manera que se respete el orden en que estan relacionadas
+  zonaActual = Area que actualmente se está organizando, La recursión incia con las raices
+  */
   private organizarAreas(zonaActual : Array<Area>){
     var nuevaZona = new Array<Area>();
     for(var i = 0; i < zonaActual.length; i++ ){
@@ -77,6 +97,10 @@ export class NavegacionComponent implements OnInit  {
     }
   }
 
+  /*
+  Extrae un area con un id particular del arreglo areasActual
+  id = identificador del area a extraer
+  */
   private buscarArea(id : String){
     for(var i = 0; i < this.areasActual.length; i++ ){
       if(this.areasActual[i]._id === id)
@@ -84,6 +108,9 @@ export class NavegacionComponent implements OnInit  {
     }
   }
 
+  /*
+  Limpia la selección hecha por el usuario
+  */
   private limpiarSeleccion(){
     this.cuerpoAreas = new Array();
     this.areasActual = new Array<Area>();

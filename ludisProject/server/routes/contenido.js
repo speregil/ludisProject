@@ -14,6 +14,16 @@ router.post('/ruina', function(req, res, next) {
     });
 });
 
+router.post('/editarRuina', function(req, res, next) {
+    controller.editarRuina(req, function(err, num){
+        if(err){
+           res.status(500);
+           res.json({status: 1, mensaje: 'Error de actualizacion: ' + err}); 
+        }
+        res.json({status: 0, mensaje: "Ruina actualizada exitosamente"});
+    });
+});
+
 router.post('/area', function(req, res, next) {
     controller.crearArea(req, function(err, area){
         if(err){

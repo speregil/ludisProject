@@ -1,0 +1,12 @@
+<div>
+    <select [(ngModel)]="ruinaActual" (change)="getAreas()">
+        <option *ngFor="let r of ruinas" [ngValue]="r">{{r.nombre}}</option>
+    </select>
+</div>
+
+<div>
+    <select [(ngModel)]="seleccion">
+        <option [ngValue]="{_id: -1, nombre: '', des: '', alt: '', areaPrev: -1, areaSig: -1, ruina: -1}" selected>Nueva Area...</option>
+        <option *ngFor="let a of areas" [ngValue]="a">{{a.nombre}}</option>
+    </select>
+</div>

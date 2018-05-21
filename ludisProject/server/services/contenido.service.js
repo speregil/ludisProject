@@ -18,6 +18,14 @@ servicio.crearRuina = function(nombre, alt, callback){
     });
 }
 
+servicio.editarRuina = function(id, nNombre, nAlt, callback){
+    var db = conexion.conectar();
+    Ruina.update({_id: id}, {$set: {nombre: nNombre, alt: nAlt}}, function(err, num){
+        conexion.desconectar();
+        callback(err, num);
+    });
+}
+
 servicio.crearArea = function(nombre, desc, alt, idRuina, callback){
     var db = conexion.conectar();
     var area = new Area();

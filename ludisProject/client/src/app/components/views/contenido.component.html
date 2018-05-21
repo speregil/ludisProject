@@ -3,7 +3,7 @@
         <h1 class="display-3">Administración de contenido</h1>
         <nav>
             <a [routerLink]="['/contenido',{outlets:{contenido:'contenido/ruina'}}]">Ruinas</a>
-            <a>Areas</a>
+            <a [routerLink]="['/contenido',{outlets:{contenido:'contenido/area'}}]">Areas</a>
             <a>Contenidos</a>
             <a>Evaluaciones</a>
         </nav>

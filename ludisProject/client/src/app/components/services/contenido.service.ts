@@ -10,4 +10,8 @@ export class ContenidoService {
   crearRuina(nomRuina, altRuina){
     return this.http.post<{}>('http://localhost:3000/api/contenido/ruina',{nombre: nomRuina, alt: altRuina});
   }
+
+  editarRuina(idRuina, nomRuina, altRuina){
+    return this.http.post('http://localhost:3000/api/contenido/editarRuina',{id: idRuina, nombre: nomRuina, alt: altRuina});
+  }
 }

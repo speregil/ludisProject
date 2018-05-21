@@ -1,6 +1,6 @@
 <div>
     <select [(ngModel)]="seleccion">
-        <option [ngValue]="{nombre: '', alt: ''}" selected>Nueva Ruina...</option>
+        <option [ngValue]="{_id: -1, nombre: '', alt: ''}" selected>Nueva Ruina...</option>
         <option *ngFor="let r of ruinas" [ngValue]="r">{{r.nombre}}</option>
     </select>
 </div>
@@ -12,4 +12,4 @@
     <input [(ngModel)]="seleccion.alt" placeholder="alterno">
 </label>
 <p>{{mensaje}}</p>
-<button (click) = "crearRuina()">Crear Ruina</button>
+<button (click) = "manejarSeleccion()">Crear/Editar Ruina</button>
