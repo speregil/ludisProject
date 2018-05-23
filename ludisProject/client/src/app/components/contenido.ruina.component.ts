@@ -50,7 +50,7 @@ import { NavegacionService } from './services/navegacion.service';
     nomRuina = nombre de la nueva ruina
     altRuina = Descripción alterna de la nueva ruina
     */
-    crearRuina(nomRuina, altRuina){
+    private crearRuina(nomRuina, altRuina){
       if(nomRuina != "" && altRuina != ""){
         this.contenidoService.crearRuina(nomRuina, altRuina).subscribe(data  => { 
           if(data["status"] > 0)
@@ -72,7 +72,7 @@ import { NavegacionService } from './services/navegacion.service';
     nomRuina = nuevo nombre de la ruina
     altRuina = nueva descripción alterna de la ruina
     */
-    editarRuina(id, nomRuina, altRuina){
+    private editarRuina(id, nomRuina, altRuina){
       if(nomRuina != "" && altRuina != ""){
         this.contenidoService.editarRuina(id, nomRuina, altRuina).subscribe(resp => {
           this.mensaje = resp["mensaje"];

@@ -41,16 +41,43 @@ servicio.crearArea = function(nombre, desc, alt, idRuina, callback){
     });
 }
 
+servicio.editarArea = function(id, nNombre, nDesc, nAlt, callback){
+    var db = conexion.conectar();
+    Area.update({_id: id}, {$set: {nombre: nNombre, descripcion: nDesc, descripcionAlt: nAlt}}, function(err, num){
+        conexion.desconectar();
+        callback(err, num);
+    });
+}
+
 servicio.asignarSiguiente = function(idActual, idSiguiente, callback){
     var db = conexion.conectar();
-    Area.update({_id: idActual}, {"#push" : {"areaSig" : idSiguiente}}, function(err, areaActual){
-        if(err)
-            callback(err, null, null);
-        
-        Area.update({_id: idSiguiente}, {"#push" : {"areaPrev" : idActual}}, function(err, areaSig){
-            conexion.desconectar();
-            callback(err, areaSig, areaActual);
-        });
+    Area.update({_id: idActual}, {"$addToSet" : {"areaSig" : idSiguiente}}, function(err, numActual){
+        conexion.desconectar();
+        callback(err, numActual, idActual, idSiguiente);
+    });
+}
+
+servicio.asignarPrevio = function(idActual, idSiguiente, callback){
+    var db = conexion.conectar();
+    Area.update({_id: idSiguiente}, {"$addToSet" : {"areaPrev" : idActual}}, function(err, numSig){
+        conexion.desconectar();
+        callback(err, numSig, idActual, idSiguiente);
+    });
+}
+
+servicio.removerSiguiente = function(idActual, idSiguiente, callback){
+    var db = conexion.conectar();
+    Area.update({_id: idActual}, {"$pull" : {"areaSig" : idSiguiente}}, function(err, numActual){
+        conexion.desconectar();
+        callback(err, numActual, idActual, idSiguiente);
+    });
+}
+
+servicio.removerPrevio = function(idActual, idSiguiente, callback){
+    var db = conexion.conectar();
+    Area.update({_id: idSiguiente}, {"$pull" : {"areaPrev" : idActual}}, function(err, numSig){
+        conexion.desconectar();
+        callback(err, numSig, idActual, idSiguiente);
     });
 }
 

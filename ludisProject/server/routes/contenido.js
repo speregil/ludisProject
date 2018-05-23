@@ -34,13 +34,34 @@ router.post('/area', function(req, res, next) {
     });
 });
 
+router.post('/editarArea', function(req, res, next) {
+    controller.editarArea(req, function(err, num){
+        if(err){
+           res.status(500);
+           res.json({status: 1, mensaje: 'Error de actualizacion: ' + err}); 
+        }
+        res.json({status: 0, mensaje: "Area actualizada exitosamente"});
+    });
+});
+
 router.post('/asignar', function(req, res, next){
-    controller.asignarSiguiente(req, function(err, areaSiguiente, areaActual){
+    controller.asignarSiguiente(req, function(err, stat){
         if(err){
             res.status(500);
-            res.json({status : 1, err : 'Error de actualizacion: ' + err, data : {}}); 
+            res.json({status : -1, err : 'Error de actualizacion: ' + err, data : {}}); 
          }
-         res.json({status: 0, sig: areaSiguiente, actual: areaActual});
+         
+         res.json({status: stat});
+    });
+});
+
+router.post('/remover', function(req, res, next){
+    controller.removerSiguiente(req, function(err, stat){
+        if(err){
+            res.status(500);
+            res.json({status : -1, err : 'Error de actualizacion: ' + err, data : {}}); 
+         }   
+         res.json({status: stat});
     });
 });
 
