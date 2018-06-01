@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ContenidoService } from './services/contenido.service';
 import { NavegacionService } from './services/navegacion.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
+import { Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'contenido-area',
@@ -77,7 +77,7 @@ import 'rxjs/add/observable/forkJoin';
           observables.push(this.navegacionService.getArea(prev[i]));
         }
   
-        Observable.forkJoin(observables).subscribe(dataArray => {
+        forkJoin(observables).subscribe(dataArray => {
           for(var i = 0; i < dataArray.length; i++){
             resp[i] = dataArray[i];
           }
@@ -96,7 +96,7 @@ import 'rxjs/add/observable/forkJoin';
           observables.push(this.navegacionService.getArea(sig[i]));
         }
 
-        Observable.forkJoin(observables).subscribe(dataArray => {
+        forkJoin(observables).subscribe(dataArray => {
           for(var i = 0; i < dataArray.length; i++){
             resp[i] = dataArray[i];
           }
