@@ -1,20 +1,30 @@
-<div class="container">
-  <div class="row row-offcanvas row-offcanvas-left">
-        
-    <!-- sidebar -->
-    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-      <div class="list-group">
-        <button *ngFor="let ruina of ruinas" (click) = "getAreas(ruina._id)">{{ruina.nombre}}</button>          
+<div class="sidebar_section">
+  <div class="sidebar_recent">
+    <div class="sidebar_title">ruinas</div>
+
+    <!-- Menu de Ruinas -->
+    <div class="recent_post d-flex flex-row justify-content-start" *ngFor="let ruina of ruinas">
+      <div class="recent_post_image">
+        <img src="assets/images/ruin.png" alt="">
       </div>
-    </div>
+      <div class="recent_post_content" (click) = "getAreas(ruina._id)">
+        <h4 class="recent_post_title">{{ruina.nombre}}</h4>
+        <span class="recent_post_date">{{ruina.alt}}</span>
+      </div>
+    </div>        
   	
-    <!-- main area -->
-    <div class="col-xs-12 col-sm-9">
-      <table>
-        <tr *ngFor="let areas of cuerpoAreas">
-          <td *ngFor="let area of areas"><button>{{area.nombre}}</button></td>
-        </tr>
-      </table>           
-    </div><!-- /.col-xs-12 main -->
-  </div><!--/.row-->
-</div><!--/.container-->
+<table>
+  <tr *ngFor="let areas of cuerpoAreas">
+    <td *ngFor="let area of areas"><button (click) = "getRecorrido(area._id)">{{area.nombre}}</button></td>
+  </tr>
+</table>
+      
+<table>
+  <tr *ngFor="let nodos of cuerpoRecorrido">
+    <td *ngFor="let nodo of nodos"><button (click) = "getContenido(nodo.contenido)">{{nodo.tipo}} - {{nodo._id}}</button></td>
+  </tr>
+</table>
+      
+<label>{{contenidoActual.tipo}} - {{contenidoActual.nombre}}</label>
+<p>{{contenidoActual.descripcion}}</p>
+<button *ngIf="contenidoActual != {}">Ver</button>

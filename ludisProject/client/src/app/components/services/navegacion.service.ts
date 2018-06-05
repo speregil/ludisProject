@@ -20,4 +20,14 @@ export class NavegacionService {
     const url = 'http://localhost:3000/api/navegacion/area/' + idArea;
     return this.http.get<{}>(url);
   }
+
+  getRecorrido(idArea) {
+    const url = 'http://localhost:3000/api/navegacion/recorrido/' + idArea;
+    return this.http.get<{}[]>(url);
+  }
+
+  getContenido(idContenido) {
+    const url = 'http://localhost:3000/api/navegacion/nodo/' + idContenido;
+    return this.http.get<{}>(url);
+  }
 }

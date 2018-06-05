@@ -13,6 +13,8 @@ import { AreaComponent } from './components/contenido.area.component';
 import { NavegacionService } from 'app/components/services/navegacion.service';
 import { ContenidoService } from 'app/components/services/contenido.service';
 
+import { AlertModule } from 'ngx-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ContenidoService } from 'app/components/services/contenido.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AlertModule.forRoot()
   ],
   providers: [
     NavegacionService,

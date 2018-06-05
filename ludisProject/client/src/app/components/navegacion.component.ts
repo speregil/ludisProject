@@ -5,8 +5,7 @@ import { Area } from './models/area.model';
 @Component({
   selector: 'navegacion',
   templateUrl: './views/navegacion.component.html',
-  styleUrls: ['./views/assets/bootstrap/css/bootstrap.min.css',
-              './views/assets/navegacion.component.css']
+  styleUrls: ['./views/assets/navegacion.component.css']
 })
 
 /*
@@ -18,8 +17,11 @@ export class NavegacionComponent implements OnInit  {
   
   ruinas = [];                              // Conjunto de ruinas registradas en el sistema
   cuerpoAreas = new Array();                // Areas organizadas para visualizacion que conforman la ruina actual seleccionada
+  cuerpoRecorrido = new Array();
+  contenidoActual = {};
 
   private areasActual = new Array<Area>();  // Conjunto de areas de la ruina actual
+  private recorridoActual = [];
 
   ngOnInit() {
     this.getRuinas();
@@ -108,11 +110,65 @@ export class NavegacionComponent implements OnInit  {
     }
   }
 
+  getRecorrido(idArea){
+    this.limpiarRecorrido();
+    this.navegacionService.getRecorrido(idArea).subscribe(data => {
+      this.recorridoActual = data;
+      var raices = new Array<{}>();
+      for(var i = 0; i < this.recorridoActual.length; i++ ){
+        var nodo = this.recorridoActual[i];
+        var nodosPrev = [];
+        nodosPrev = nodo["previos"];
+        if(nodosPrev.length == 0)
+          raices.push(nodo);
+      }
+
+      this.cuerpoRecorrido.push(raices);
+      this.organizarRecorrido(raices);
+    });
+  }
+
+  private organizarRecorrido(zonaActual : Array<{}>){
+    var nuevaZona = new Array<{}>();
+    for(var i = 0; i < zonaActual.length; i++ ){
+      var siguientes = [];
+      var nodoActual = zonaActual[i];
+      siguientes = nodoActual["siguientes"];
+      for(var j = 0; j < siguientes.length; j++){
+        var nodoSiguiente = this.buscarNodo(siguientes[j]);
+        if(nodoSiguiente != null)
+          nuevaZona.push(nodoSiguiente);
+      }
+    }
+
+    if(nuevaZona.length > 0){
+      this.cuerpoRecorrido.push(nuevaZona);
+      this.organizarRecorrido(nuevaZona);
+    }
+  }
+
+  private buscarNodo(id : String){
+    for(var i = 0; i < this.recorridoActual.length; i++ ){
+      var nodoActual = this.recorridoActual[i];
+      if(nodoActual["_id"] === id)
+        return nodoActual;
+    }
+  }
+
+  getContenido(idContenido){
+    this.navegacionService.getContenido(idContenido).subscribe(data => this.contenidoActual = data);
+  }
+
   /*
   Limpia la selección hecha por el usuario
   */
   private limpiarSeleccion(){
     this.cuerpoAreas = new Array();
     this.areasActual = new Array<Area>();
+  }
+
+  private limpiarRecorrido(){
+    this.cuerpoRecorrido = new Array();
+    this.recorridoActual = [];
   }
 }

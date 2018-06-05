@@ -3,6 +3,7 @@ var conexion = require('./conexion.service');
 var Ruina = require('./models/Ruina');
 var Area = require('./models/Area');
 var Nodo = require('./models/Nodo');
+var Contenido = require('./models/Contenido');
 
 // Servicio de acceso a las diferentes entidades de navegacion de contenido
 // Permite la lectura de información relacionada con Ruinas, Areas y Recorridos
@@ -53,6 +54,14 @@ servicio.recorrido = function (idArea, callback){
     var db = conexion.conectar();
     Nodo.find({area : idArea}, function(err, recorrido){
         callback(err, recorrido);
+        conexion.desconectar();
+    });
+}
+
+servicio.nodo = function(idContenido, callback){
+    var db = conexion.conectar();
+    Contenido.find({_id: idContenido}, function(err, contenido){
+        callback(err, contenido[0]);
         conexion.desconectar();
     });
 }

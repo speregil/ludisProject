@@ -1,54 +1,156 @@
-body {
-  padding-top: 70px;  
+.blog_sidebar
+{
+	width: 100%;
 }
-.text-center {
-  padding-top: 20px;
+.sidebar_section
+{
+	margin-bottom: 58px;
 }
-.col-xs-12 {
-  background-color: #fff;
+.sidebar_section:last-child
+{
+	margin-bottom: 0px;
 }
-#sidebar {
-  height: 100%;
-  padding-right: 0;
-  padding-top: 20px;
+#blog_search
+{
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+	border: solid 1px #b7b7b7;
+	padding-left: 12px;
 }
-#sidebar .nav {
-  width: 95%;
+#blog_search:focus
+{
+	border: solid 2px #ff4200 !important;
+	box-shadow: none !important;
+	outline: none !important;
 }
-#sidebar li {
-  border:0 #f2f2f2 solid;
-  border-bottom-width:1px;
+#blog_search::-webkit-input-placeholder
+{
+	font-size: 10px !important;
+	font-weight: 400 !important;
+	font-style: italic !important;
+	color: #6e6e6e !important;
+}
+#blog_search:-moz-placeholder /* older Firefox*/
+{
+	font-size: 10px !important;
+	font-weight: 400 !important;
+	font-style: italic !important;
+	color: #6e6e6e !important;
+}
+#blog_search::-moz-placeholder /* Firefox 19+ */ 
+{
+	font-size: 10px !important;
+	font-weight: 400 !important;
+	font-style: italic !important;
+	color: #6e6e6e !important;
+} 
+#blog_search:-ms-input-placeholder
+{ 
+	font-size: 10px !important;
+	font-weight: 400 !important;
+	font-style: italic !important;
+	color: #6e6e6e !important;
+}
+#blog_search::input-placeholder
+{
+	font-size: 10px !important;
+	font-weight: 400 !important;
+	font-style: italic !important;
+	color: #6e6e6e !important;
+}
+#search_submit
+{
+	position: absolute;
+	top: 0;
+	right: 5px;
+	border: none;
+	background: transparent;
+	height: 40px;
+	width: 40px;
+	cursor: pointer;
 }
 
-/* collapsed sidebar styles */
-@media screen and (max-width: 767px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -41.6%;
-  }
+/*********************************
+10. Sidebar Title
+*********************************/
 
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -41.6%;
-  }
-  .row-offcanvas-right.active {
-    right: 41.6%;
-  }
-  .row-offcanvas-left.active {
-    left: 41.6%;
-  }
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 41.6%;
-  }
-  #sidebar {
-    padding-top:0;
-  }
+.sidebar_title
+{
+	font-size: 16px;
+	font-weight: 600;
+	color: #1c1c1c;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	padding-bottom: 11px;
+	margin-bottom: 59px;
 }
+.sidebar_title::after
+{
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 43px;
+	height: 2px;
+	background: #ff4200;
+	content: '';
+}
+
+/*********************************
+11. Sidebar Recent Posts
+*********************************/
+
+.recent_post
+{
+	margin-bottom: 27px;
+}
+
+.recent_post_content
+{
+	margin-left: 19px;
+}
+
+.recent_post_content:hover
+{
+	background-color: #d2d4d8;
+}
+
+.recent_post_title
+{
+	color: #343434;
+	letter-spacing: 0.075em;
+	text-transform: uppercase;
+	margin-bottom: 8px;
+}
+
+.recent_post_title a:hover
+{
+	color: #ff4200;
+}
+
+.recent_post_date
+{
+	display: block;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #9a9a9a;
+	letter-spacing: 0.075em;
+	margin-top: 2px;
+}
+
+.recent_post_image
+{
+  display: block;
+  overflow: hidden;
+  margin: 2px, 2px, 2px, 2px;
+  width: 32px;
+  height: 32px;
+}
+
+.recent_post_image img
+{
+	width: 100%;
+  height: auto;
+}
+

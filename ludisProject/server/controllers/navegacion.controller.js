@@ -41,4 +41,10 @@ controller.recorrido = function (idArea, callback){
     });   
 }
 
+controller.nodo = function (idContenido, callback){
+    servicio.nodo(idContenido, function(err, contenido){
+        callback(err, contenido);
+    });   
+}
+
 module.exports = controller;

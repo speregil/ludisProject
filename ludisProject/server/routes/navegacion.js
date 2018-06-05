@@ -49,4 +49,15 @@ router.get('/recorrido/:idArea', function(req, res, next) {
     });
 });
 
+router.get('/nodo/:idContenido', function(req, res, next){
+    controller.nodo(req.params.idContenido, function(err, contenido){
+        if(err){
+            res.status(500);
+            res.send('Error de consulta: ' + err); 
+         }
+ 
+         res.send(contenido);
+    });
+});
+
 module.exports = router;
