@@ -1,30 +1,46 @@
-<div class="sidebar_section">
-  <div class="sidebar_recent">
-    <div class="sidebar_title">ruinas</div>
+<section class="container-fluid"><div class="row">
+  
+  <!-- Menu de Ruinas -->
+  <div class="col-md-3">
+    <div class="sidebar_recent">
+      <div class="sidebar_title">ruinas</div>
+    
+      <div class="recent_post d-flex flex-row justify-content-start" *ngFor="let ruina of ruinas">
+        <div class="recent_post_image">
+          <img src="assets/images/ruin.png" alt="">
+        </div>
+        <div class="recent_post_content" (click) = "getAreas(ruina._id)">
+          <h4 class="recent_post_title">{{ruina.nombre}}</h4>
+          <span class="recent_post_date">{{ruina.alt}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Menu de Ruinas -->
-    <div class="recent_post d-flex flex-row justify-content-start" *ngFor="let ruina of ruinas">
-      <div class="recent_post_image">
-        <img src="assets/images/ruin.png" alt="">
-      </div>
-      <div class="recent_post_content" (click) = "getAreas(ruina._id)">
-        <h4 class="recent_post_title">{{ruina.nombre}}</h4>
-        <span class="recent_post_date">{{ruina.alt}}</span>
-      </div>
-    </div>        
-  	
-<table>
-  <tr *ngFor="let areas of cuerpoAreas">
-    <td *ngFor="let area of areas"><button (click) = "getRecorrido(area._id)">{{area.nombre}}</button></td>
-  </tr>
-</table>
-      
-<table>
-  <tr *ngFor="let nodos of cuerpoRecorrido">
-    <td *ngFor="let nodo of nodos"><button (click) = "getContenido(nodo.contenido)">{{nodo.tipo}} - {{nodo._id}}</button></td>
-  </tr>
-</table>
-      
-<label>{{contenidoActual.tipo}} - {{contenidoActual.nombre}}</label>
-<p>{{contenidoActual.descripcion}}</p>
-<button *ngIf="contenidoActual != {}">Ver</button>
+  <!-- Mapa de áreas -->
+  <div class="col-md-4">
+    <table class="table">
+      <tr class="d-flex" *ngFor="let areas of cuerpoAreas">
+        <td class="col" *ngFor="let area of areas"><button class="btn btn-md btn-primary btn-area" (click) = "getRecorrido(area._id)">{{area.nombre}}</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Mapa recorrido -->
+  <div class="col-md-2">
+    <table>
+      <tr class="d-flex" *ngFor="let nodos of cuerpoRecorrido">
+        <td class="col" *ngFor="let nodo of nodos"><button [ngClass]="{'btn-contenido' : nodo.tipo == 'contenido', 'btn-refuerzo' : nodo.tipo == 'refuerzo', 'btn-evaluacion' : nodo.tipo == 'evaluacion'}" (click) = "getContenido(nodo.contenido)"></button></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Info contenido -->
+  <div class="col-md-3">
+    <div class="info-nodo" ng-if="contenidoActual != {}">  
+      <label><span>{{contenidoActual.tipo}}:</span> {{contenidoActual.nombre}}</label>
+      <p>{{contenidoActual.descripcion}}</p>
+      <button>VER</button>
+    </div>
+  </div>
+</div></section>        
