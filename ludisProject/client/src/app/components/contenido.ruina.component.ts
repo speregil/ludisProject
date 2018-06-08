@@ -5,7 +5,7 @@ import { NavegacionService } from './services/navegacion.service';
 @Component({
     selector: 'contenido-ruina',
     templateUrl: './views/contenido.ruina.component.html',
-    styleUrls: ['./views/assets/navegacion.component.css']
+    styleUrls: ['./views/assets/contenido.form.component.css']
   })
 
   /*

@@ -1,15 +1,24 @@
-<div>
-    <select [(ngModel)]="seleccion">
-        <option [ngValue]="{_id: -1, nombre: '', alt: ''}" selected>Nueva Ruina...</option>
-        <option *ngFor="let r of ruinas" [ngValue]="r">{{r.nombre}}</option>
-    </select>
-</div>
+<h1>Administración de Ruinas</h1>
 
-<label>Nombre:
-    <input [(ngModel)]="seleccion.nombre" placeholder="nombre">
-</label>
-<label>Nombre alterno:
-    <input [(ngModel)]="seleccion.alt" placeholder="alterno">
-</label>
 <p>{{mensaje}}</p>
-<button (click) = "manejarSeleccion()">Crear/Editar Ruina</button>
+
+<ul class="form-style-1">
+    <li>
+        <label>Ruinas</label>&nbsp;
+        <select class="field-select" [(ngModel)]="seleccion">
+            <option [ngValue]="{_id: -1, nombre: '', alt: ''}" selected>Nueva Ruina...</option>
+            <option *ngFor="let r of ruinas" [ngValue]="r">{{r.nombre}}</option>
+        </select>
+    </li>
+    <li>
+        <label>Nombre:</label>
+        <input class="field-long" [(ngModel)]="seleccion.nombre" placeholder="nombre">
+    </li>
+    <li>
+        <label>Nombre alterno:</label>
+        <input class="field-long" [(ngModel)]="seleccion.alt" placeholder="alterno">
+    </li>
+    <li>
+        <input type="button" value="Crear/Editar Ruina" (click) = "manejarSeleccion()">
+    </li>
+</ul>

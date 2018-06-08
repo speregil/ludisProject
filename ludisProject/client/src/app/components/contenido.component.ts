@@ -4,7 +4,7 @@ import { ContenidoService } from './services/contenido.service';
 @Component({
     selector: 'contenido',
     templateUrl: './views/contenido.component.html',
-    styleUrls: ['./views/assets/navegacion.component.css']
+    styleUrls: ['./views/assets/contenido.component.css']
   })
 
   export class ContenidoComponent implements OnInit  {

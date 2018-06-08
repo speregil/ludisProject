@@ -1,44 +1,62 @@
-<div>
-    <select [(ngModel)]="ruinaActual" (change)="manejarSeleccionRuina()">
-        <option *ngFor="let r of ruinas" [ngValue]="r">{{r.nombre}}</option>
-    </select>
-</div>
+<h1>Administración de Areas</h1>
 
-<div>
-    <select [(ngModel)]="seleccion" (change)="getAreasAdyacentes()">
-        <option [ngValue]="{_id: -1, nombre: '', descripcion: '', descripcionAlt: '', areaPrev: [], areaSig: [], ruina: -1}" selected>Nueva Area...</option>
-        <option *ngFor="let a of areas" [ngValue]="a">{{a.nombre}} - {{a.descripcionAlt}}</option>
-    </select>
-</div>
+<p>{{mensaje}}</p>
 
-<div>
-    <label>Nombre:
-        <input [(ngModel)]="seleccion.nombre" placeholder="nombre">
-    </label>
-    <label>Descripción:
-        <input [(ngModel)]="seleccion.descripcion" placeholder="descripción">
-    </label>
-    <label>Descripción Alterna:
-        <input [(ngModel)]="seleccion.descripcionAlt" placeholder="alterna">
-    </label>
-    <p>{{mensaje}}</p>
-    <button (click) = "manejarSeleccionArea()">Crear/Editar Area</button>
-</div>
-<div>
-    <label>Areas siguientes:
-        <ul>
-            <li *ngFor="let a of seleccion.areaSig">{{a.nombre}}</li>
-        </ul>
-        <select [(ngModel)]="asignacion">
-            <option [ngValue]="{_id: -1, nombre: '', descripcion: '', descripcionAlt: '', areaPrev: [], areaSig: [], ruina: -1}" selected>Ninguna</option>
+<h2>Crear/Editar</h2>
+<ul class="form-style-1">
+    <li>
+        <label>Ruinas Actuales</label>
+        <select class="field-select" [(ngModel)]="ruinaActual" (change)="manejarSeleccionRuina()">
+            <option *ngFor="let r of ruinas" [ngValue]="r">{{r.nombre}}</option>
+        </select>
+    </li>
+    <li>
+        <label>Areas Asociadas</label>
+        <select class="field-select" [(ngModel)]="seleccion" (change)="getAreasAdyacentes()">
+            <option [ngValue]="{_id: -1, nombre: '', descripcion: '', descripcionAlt: '', areaPrev: [], areaSig: [], ruina: -1}" selected>Nueva Area...</option>
             <option *ngFor="let a of areas" [ngValue]="a">{{a.nombre}} - {{a.descripcionAlt}}</option>
         </select>
-        <button (click) = "asignarArea()">Asignar área</button>
-        <button (click) = "removerArea()">Remover área</button>
-    </label>
-    <label>Areas previas:
-        <ul>
+    </li>
+    <li>
+        <label>Nombre:</label>
+        <input class="field-long" [(ngModel)]="seleccion.nombre" placeholder="nombre">
+    </li>
+    <li>
+        <label>Descripción:</label>
+        <textarea class="field-long field-textarea" [(ngModel)]="seleccion.descripcion"></textarea>
+    </li>
+    <li>
+        <label>Descripción Alterna:</label>
+        <textarea class="field-long field-textarea" [(ngModel)]="seleccion.descripcionAlt"></textarea>
+    </li>
+    <li>
+        <input type="button" value="Crear/Editar Area" (click) = "manejarSeleccionArea()">
+    </li>
+</ul>
+
+<h2>Asignar/Desasignar</h2>
+<ul class="form-style-1">
+    <li>
+        <label>Areas siguientes:</label>
+        <ul class="form-list">
+            <li *ngFor="let a of seleccion.areaSig">{{a.nombre}}</li>
+        </ul>   
+    </li>
+    <li>
+        <label>Areas previas:</label>
+        <ul class="form-list">
             <li *ngFor="let a of seleccion.areaPrev">{{a.nombre}}</li>
         </ul>
-    </label>
-</div>
+    </li>
+    <li>
+        <label>Escoger un área:</label>
+        <select class="field-select" [(ngModel)]="asignacion">
+            <option [ngValue]="{_id: -1, nombre: '', descripcion: '', descripcionAlt: '', areaPrev: [], areaSig: [], ruina: -1}" selected>Ninguna</option>
+            <option *ngFor="let a of areas" [ngValue]="a">{{a.nombre}} - {{a.descripcionAlt}}</option>
+        </select>  
+    </li>
+    <li>
+        <input type="button" value="Asignar área" (click) = "asignarArea()">
+        <input type="button" value="Remover área" (click) = "removerArea()">
+    </li>
+</ul>

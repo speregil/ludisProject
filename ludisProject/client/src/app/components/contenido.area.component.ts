@@ -7,7 +7,7 @@ import { forkJoin } from 'rxjs';
 @Component({
     selector: 'contenido-area',
     templateUrl: './views/contenido.area.component.html',
-    styleUrls: ['./views/assets/navegacion.component.css']
+    styleUrls: ['./views/assets/contenido.form.component.css']
   })
 
   export class AreaComponent implements OnInit  {

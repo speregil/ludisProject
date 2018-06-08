@@ -1,15 +1,10 @@
-<div class="page-container">
-    <div class="container">
-        <h1 class="display-3">Administración de contenido</h1>
-        <nav>
-            <a [routerLink]="['/contenido',{outlets:{contenido:'contenido/ruina'}}]">Ruinas</a>
-            <a [routerLink]="['/contenido',{outlets:{contenido:'contenido/area'}}]">Areas</a>
-            <a>Contenidos</a>
-            <a>Evaluaciones</a>
-        </nav>
-    </div>
+<!-- Navegación del contenido -->
+<nav>
+    <ul>
+        <li><a [routerLink]="['/contenido',{outlets:{contenido:'contenido/ruina'}}]">Ruinas</a></li>
+        <li><a [routerLink]="['/contenido',{outlets:{contenido:'contenido/area'}}]">Areas</a></li>
+    </ul>
+</nav>
 
-    <div class="container">
-        <router-outlet name="contenido"></router-outlet>
-    </div>
-</div>
+<!-- Outlet del contenido -->
+<router-outlet name="contenido"></router-outlet>
